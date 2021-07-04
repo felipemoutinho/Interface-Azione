@@ -13,6 +13,7 @@ export class AuthComponent {
     }
 
     onSubmit(){
+        window.localStorage.setItem('token','meu-token');
         this.router.navigate(['/home']);
     }
 }
