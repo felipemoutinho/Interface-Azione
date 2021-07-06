@@ -7,10 +7,10 @@
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-          data-bs-target="#home-collapse" aria-expanded="true">
+          data-bs-target="#home-collapse" aria-expanded="false">
           Home
         </button>
-        <div class="collapse show" id="home-collapse">
+        <div class="collapse" id="home-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="#" class="link-dark rounded">Overview</a></li>
             <li><a href="#" class="link-dark rounded">Updates</a></li>
@@ -21,28 +21,71 @@
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
           data-bs-target="#dashboard-collapse" aria-expanded="false">
-          Dashboard
+          Pessoas
         </button>
         <div class="collapse" id="dashboard-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a [routerLink]="['/home/clientes']" class="link-dark rounded">Clientes</a></li>
-            <li><a href="#" class="link-dark rounded">Weekly</a></li>
-            <li><a href="#" class="link-dark rounded">Monthly</a></li>
-            <li><a href="#" class="link-dark rounded">Annually</a></li>
+            <li><a href="#" class="link-dark rounded">Fornecedores</a></li>
+            <li><a href="#" class="link-dark rounded">Vendedores</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+          data-bs-target="#produtos-collapse" aria-expanded="false">
+          Produtos
+        </button>
+        <div class="collapse" id="produtos-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark rounded">Cadastro de Produtos</a></li>
           </ul>
         </div>
       </li>
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
           data-bs-target="#orders-collapse" aria-expanded="false">
-          Orders
+          Serviços
         </button>
         <div class="collapse" id="orders-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">New</a></li>
-            <li><a href="#" class="link-dark rounded">Processed</a></li>
-            <li><a href="#" class="link-dark rounded">Shipped</a></li>
-            <li><a href="#" class="link-dark rounded">Returned</a></li>
+            <li><a href="#" class="link-dark rounded">Cadastro de Serviços</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+          data-bs-target="#movimentacao-collapse" aria-expanded="false">
+          Movimentação
+        </button>
+        <div class="collapse" id="movimentacao-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark rounded">Entrada</a></li>
+            <li><a href="#" class="link-dark rounded">Saída</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+          data-bs-target="#financeiro-collapse" aria-expanded="false">
+          Financeiro
+        </button>
+        <div class="collapse" id="financeiro-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark rounded">Meios pagamento</a></li>
+            <li><a href="#" class="link-dark rounded">Lançamentos</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+          data-bs-target="#relatorio-collapse" aria-expanded="false">
+          Relatórios
+        </button>
+        <div class="collapse" id="relatorio-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark rounded">Produtos em Falta</a></li>
+            <li><a href="#" class="link-dark rounded">Vendas</a></li>
           </ul>
         </div>
       </li>
@@ -50,14 +93,12 @@
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
           data-bs-target="#account-collapse" aria-expanded="false">
-          Account
+          Minha Conta
         </button>
         <div class="collapse" id="account-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">New...</a></li>
-            <li><a href="#" class="link-dark rounded">Profile</a></li>
-            <li><a href="#" class="link-dark rounded">Settings</a></li>
-            <li><a href="#" class="link-dark rounded">Sign out</a></li>
+            <li><a href="#" class="link-dark rounded">Configurações</a></li>
+            <li><a href="#" class="link-dark rounded">Sair do Sistema</a></li>
           </ul>
         </div>
       </li>
