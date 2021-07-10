@@ -1,16 +1,18 @@
 <div>
   <main class="form-signin">
-    <form>
+    <form novalidate [formGroup]="loginForm">
       <img class="mb-4" src="../../../assets/img/logoazione.png">
+      
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput">
-        <label for="floatingInput">Login</label>
+        <input type="text" class="form-control" id="login" name="login" formControlName="login" required>
+        <label for="login">Login</label>
       </div>
 
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword">
+        <input type="password" class="form-control" id="floatingPassword" formControlName="senha" required>
         <label for="floatingPassword">Senha</label>
       </div>
+
       <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="onSubmit()">Acessar</button>
     </form>
   </main>
