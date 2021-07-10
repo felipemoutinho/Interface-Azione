@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SideBarComponent } from './core/layout/sidebar/sidebar.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { LoginComponent } from './pages/auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ClientesComponent } from './pages/pessoas/clientes/clientes.component';
 
@@ -17,7 +18,8 @@ import { ClientesComponent } from './pages/pessoas/clientes/clientes.component';
     AuthComponent,
     SideBarComponent,
     HomeComponent,
-    ClientesComponent
+    ClientesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
