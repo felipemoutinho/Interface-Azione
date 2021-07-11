@@ -9,12 +9,13 @@ import { ClientesComponent } from './pages/pessoas/clientes/clientes.component';
 
 const routes: Routes = [
   { 
-    path: '', component: HomeComponent, canActivate: [AuthGuard],
+    path: '', component: HomeComponent,
     children: [
       {
-        path: 'clientes', component: ClientesComponent,canActivate: [AuthGuard],
+        path: 'clientes', component: ClientesComponent,
       },
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
   {
     path: '', component: AuthComponent,
