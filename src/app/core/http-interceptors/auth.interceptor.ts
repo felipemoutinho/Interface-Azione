@@ -2,7 +2,9 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Observable, throwError } from "rxjs";
 import { AuthService } from "../shared/services/auth.service";
 import { catchError } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     
     constructor(private authService: AuthService){
