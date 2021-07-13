@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import { httpInterceptorProvider } from './core/http-interceptors';
 import { SideBarComponent } from './core/layout/sidebar/sidebar.component';
 import { ContatoComponent } from './core/shared/components/contato/contato.component';
+import { AlertComponent } from './core/utils/alerts/alert.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ClientesComponent } from './pages/pessoas/clientes/clientes.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -22,13 +24,15 @@ import { ClientesComponent } from './pages/pessoas/clientes/clientes.component';
     HomeComponent,
     ClientesComponent,
     LoginComponent,
-    ContatoComponent
+    ContatoComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [httpInterceptorProvider],
   bootstrap: [AppComponent]
