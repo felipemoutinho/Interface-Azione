@@ -12,8 +12,11 @@ import { AlertComponent } from './core/utils/alerts/alert.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ClientesComponent } from './pages/pessoas/clientes/clientes.component';
+import { ClientesFormComponent } from './pages/pessoas/clientes/form/clientes.form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { ClientesListComponent } from './pages/pessoas/clientes/list/clientes-list.component'
 
 
 @NgModule({
@@ -22,10 +25,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AuthComponent,
     SideBarComponent,
     HomeComponent,
-    ClientesComponent,
+    ClientesFormComponent,
     LoginComponent,
     ContatoComponent,
-    AlertComponent
+    AlertComponent,
+    ClientesListComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatTabsModule,
+    MatIconModule
   ],
   providers: [httpInterceptorProvider],
   bootstrap: [AppComponent]

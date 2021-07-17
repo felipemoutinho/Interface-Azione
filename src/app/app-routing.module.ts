@@ -4,7 +4,8 @@ import { AuthGuard } from './core/shared/guards/auth.guard';
 import { AuthComponent } from './pages/auth/auth.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ClientesComponent } from './pages/pessoas/clientes/clientes.component';
+import { ClientesFormComponent } from './pages/pessoas/clientes/form/clientes.form.component';
+import { ClientesListComponent } from './pages/pessoas/clientes/list/clientes-list.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
     path: '', component: HomeComponent,
     children: [
       {
-        path: 'clientes', component: ClientesComponent,
+        path: 'clientes', component: ClientesListComponent,
       },
     ],
     canActivate: [AuthGuard]
