@@ -14,9 +14,15 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ClientesFormComponent } from './pages/pessoas/clientes/form/clientes.form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClientesListComponent } from './pages/pessoas/clientes/list/clientes-list.component'
+
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
-import { ClientesListComponent } from './pages/pessoas/clientes/list/clientes-list.component'
+import {  MatTableModule  } from '@angular/material/table'
+import { MatFormFieldModule  } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort'
 
 
 @NgModule({
@@ -38,7 +44,12 @@ import { ClientesListComponent } from './pages/pessoas/clientes/list/clientes-li
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [httpInterceptorProvider],
   bootstrap: [AppComponent]
