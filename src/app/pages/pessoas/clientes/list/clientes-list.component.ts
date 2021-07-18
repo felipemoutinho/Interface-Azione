@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { ClientesService } from 'src/app/core/shared/services/clientes.service';
 import { ClientesModel } from 'src/app/core/shared/models/clientes.model';
-import { ApiResponse } from 'src/app/core/shared/models/api-response.model';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-clientes-list',
   templateUrl: './clientes-list.component.html',
@@ -22,18 +22,17 @@ export class ClientesListComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private clientesService: ClientesService) { 
+  constructor(private clientesService: ClientesService, private router: Router) { 
     
   }
   
 
   ngOnInit(): void {
-    this.getAllClientes();
+    
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.getAllClientes();
   }
   
   ngOnDestroy(): void {
@@ -51,13 +50,17 @@ export class ClientesListComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  clickedRows(idpessoa:number){
+    console.log(idpessoa);
+    this.router.navigate(['/clientes/editar/',idpessoa]);
+  }
+
   getAllClientes(): void {
-    this.clientesSub = 
-      this.clientesService.getAllClientes().subscribe(listaClientes => {
-        this.clientes = listaClientes
-        this.dataSource = new MatTableDataSource(this.clientes)
-        this.dataSource.paginator = this.paginator
-        this.dataSource.sort = this.sort
-      });
+    this.clientesSub = this.clientesService.getAllClientes().subscribe(listaClientes => {
+      this.clientes = listaClientes
+      this.dataSource = new MatTableDataSource(this.clientes)
+      this.dataSource.paginator = this.paginator
+      this.dataSource.sort = this.sort
+    });
   }
 }

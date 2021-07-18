@@ -15,6 +15,12 @@ const routes: Routes = [
       {
         path: 'clientes', component: ClientesListComponent,
       },
+      {
+        path: 'clientes/novo', component: ClientesFormComponent
+      },
+      {
+        path: 'clientes/editar/:idpessoa', component: ClientesFormComponent
+      }
     ],
     canActivate: [AuthGuard]
   },

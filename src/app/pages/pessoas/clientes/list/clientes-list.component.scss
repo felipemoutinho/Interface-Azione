@@ -1,8 +1,19 @@
 .table-container {
-    margin-left: 50px;
+    margin-left: 45px;
     margin-top: 18px;
 }
 
 table {
-    width: 99%;
+    width: 97%;
+}
+
+button.novo-cliente {
+    position: absolute; right:0;
+    margin-left: auto;
+    margin-top: 75px;
+}
+
+.table-row:hover{
+    cursor: pointer;
+    background-color:#87bdd6;
 }
