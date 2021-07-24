@@ -14,7 +14,7 @@ interface Pessoa {
 
 export interface DadosCliente {
     dadosCliente: ClientesModel;
-    dadosPessoa: DadosPessoa;
+    pessoa: DadosPessoa;
 }
 
 interface DadosPessoa {

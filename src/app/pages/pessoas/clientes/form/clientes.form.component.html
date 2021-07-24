@@ -1,28 +1,235 @@
 <h1>{{title}}</h1>
 <div class="tab-container">
-  <mat-tab-group>
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">assignment</mat-icon>
-        Dados Cliente
-      </ng-template>
-      <p>Form Com dados do cliente</p>
-    </mat-tab>
+  <form [formGroup]="formGroup">
+    <mat-tab-group>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">assignment</mat-icon>
+          Dados Cliente
+        </ng-template>
+        <div class="host" formGroupName="pessoa">
 
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">map_marked_alt</mat-icon>
-        Endereço
-      </ng-template>
-      Form com dados Endereço
-    </mat-tab>
+          <mat-form-field>
+            <mat-label>Código Pessoa</mat-label>
+            <input type="text" matInput formControlName="codigopessoa">
+            <mat-error>
+              Por favor, informe um código!
+            </mat-error>
+          </mat-form-field>
 
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">phone</mat-icon>
-        Contato
-      </ng-template>
-      <app-contato></app-contato>
-    </mat-tab>
-  </mat-tab-group>
+          <mat-form-field>
+            <mat-label>Nome</mat-label>
+            <input type="text" matInput formControlName="nome">
+            <mat-error>
+              Por favor, informe o nome do cliente!
+            </mat-error>
+          </mat-form-field>
+
+          <div formGroupName="pessoaFisica">
+
+            <mat-form-field>
+              <mat-label>CPF</mat-label>
+              <input type="text" matInput formControlName="cpf">
+              <mat-error>
+                Por favor, informe o número de CPF
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Identidade</mat-label>
+              <input type="text" matInput formControlName="identidade">
+              <mat-error>
+                Por favor, informe o número de Identidade
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Data Nascimento</mat-label>
+              <input type="datetime" matInput formControlName="datanascimento">
+              <mat-error>
+                Por favor, informe a data de nascimento
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Sexo</mat-label>
+              <mat-select matInput formControlName="sexo">
+                <mat-option value="M">Masculino</mat-option>
+                <mat-option value="F">Feminino</mat-option>
+              </mat-select>
+              <mat-error>
+                Por favor, informe o Sexo
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Estado Civil</mat-label>
+              <mat-select matInput formControlName="estadocivil">
+                <mat-option value="1">Solteiro(a)</mat-option>
+                <mat-option value="2">Casado(a)</mat-option>
+                <mat-option value="3">Divorciado(a)</mat-option>
+                <mat-option value="4">Viúvo(a)</mat-option>
+              </mat-select>
+              <mat-error>
+                Por favor, informe o estado civil
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Nome Pai</mat-label>
+              <input type="text" matInput formControlName="nomepai">
+              <mat-error>
+                Por favor, informe o nome do pai
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Nome Mãe</mat-label>
+              <input type="text" matInput formControlName="nomemae">
+              <mat-error>
+                Por favor, informe o nome da mãe
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">map_marked_alt</mat-icon>
+          Endereço
+        </ng-template>
+        Form com dados Endereço
+        <div formGroupName="pessoa">
+          <div formArrayName="enderecos">
+            <div *ngFor="let end of EnderecoForms.controls; let i=index" [formGroupName]="i">
+
+              <mat-form-field>
+                <mat-label>Logradouro</mat-label>
+                <input type="text" matInput formControlName="logradouro">
+                <mat-error>
+                  Por favor, informe o logradouro
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Bairro</mat-label>
+                <input type="text" matInput formControlName="bairro">
+                <mat-error>
+                  Por favor, informe o bairro
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Número</mat-label>
+                <input type="text" matInput formControlName="numero">
+                <mat-error>
+                  Por favor, informe o número
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Complement</mat-label>
+                <input type="text" matInput formControlName="complemento">
+                <mat-error>
+                  Por favor, informe o número
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Cep</mat-label>
+                <input type="text" matInput formControlName="cep">
+                <mat-error>
+                  Por favor, informe o número
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Cidade</mat-label>
+                <input type="text" matInput formControlName="idcidade">
+                <mat-error>
+                  Por favor, informe o número
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Estado</mat-label>
+                <input type="text" matInput formControlName="idestado">
+                <mat-error>
+                  Por favor, informe o número
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Páis</mat-label>
+                <input type="text" matInput formControlName="idpais">
+                <mat-error>
+                  Por favor, informe o número
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Endereço Principal</mat-label>
+                <input type="text" matInput formControlName="indprincipal">
+                <mat-error>
+                  Por favor, informe o número
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+        </div>
+
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">phone</mat-icon>
+          Contato
+        </ng-template>
+        <div formGroupName="pessoa">
+          <div formArrayName="contatos">
+            <div *ngFor="let cont of ContatoForms.controls; let i=index" [formGroupName]="i">
+
+              <mat-form-field>
+                <mat-label>Tipo Contato</mat-label>
+                <input type="text" matInput formControlName="idtipocontato">
+                <mat-error>
+                  Por favor, informe o contato
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Logradouro</mat-label>
+                <input type="text" matInput formControlName="descricaocontato">
+                <mat-error>
+                  Por favor, informe o contato
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Contato Principal</mat-label>
+                <mat-select matInput formControlName="indcontatoprincipal">
+                  <mat-option value="1">Sim</mat-option>
+                  <mat-option value="0">Não</mat-option>
+                </mat-select>
+                <mat-error>
+                  Por favor, informe o número
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    <div>
+      <button mat-flat-button color="accent" (click)="voltar()">Voltar</button>
+      <button mat-flat-button color="primary" type="submit" (click)="onSubmit()">Salvar</button>
+    </div>
+    Value: {{formGroup.value | json}}
+  </form>
 </div>

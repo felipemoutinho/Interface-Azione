@@ -19,11 +19,13 @@ import { ClientesListComponent } from './pages/pessoas/clientes/list/clientes-li
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select'
+import { MatRadioModule } from '@angular/material/radio'
 
 
 @NgModule({
@@ -51,9 +53,14 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatPaginatorModule,
     MatSortModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule
   ],
-  providers: [httpInterceptorProvider],
+  providers: [
+    httpInterceptorProvider,
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
