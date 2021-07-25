@@ -6,3 +6,23 @@ body {
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.error-snackbar {
+    background-color: red;
+    color: white;
+}
+
+.success-snackbar {
+    background-color: green;
+    color: white;
+}
+
+.warning-snackbar {
+    background-color: yellow;
+    color: black;
+}
+
+.default-snackbar {
+    background-color: darkgrey;
+    color: black;
+}

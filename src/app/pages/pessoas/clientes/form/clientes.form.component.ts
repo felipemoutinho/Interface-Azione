@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup,FormArray ,Validators } from "@angu
 import { ActivatedRoute, Router } from "@angular/router";
 import { ContatoComponent } from "src/app/core/shared/components/contato/contato.component";
 import { ClientesService } from "src/app/core/shared/services/clientes.service";
+import { AlertService } from "src/app/core/utils/alerts/alert.service";
 
 @Component({
     selector: 'app-clientes-form',
@@ -18,7 +19,8 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         private activatedRoute: ActivatedRoute, 
         private router: Router,
         private changeDetection: ChangeDetectorRef,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private alertService: AlertService
         ){
 
     }
@@ -130,5 +132,6 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
 
     onSubmit(){
         console.log(this.formGroup.value);
+        this.alertService.Success('teste');
     }
 }
