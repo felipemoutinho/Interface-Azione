@@ -11,7 +11,6 @@ import { ClientesService } from "src/app/core/shared/services/clientes.service";
 })
 export class ClientesFormComponent implements AfterViewInit, OnInit{
     
-    title!: string;
     formGroup!: FormGroup;
     formControls!: FormControl;
 
@@ -98,9 +97,6 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         this.formGroup = this.formBuilder.group({
             pessoa
         });
-        
-        this.title = 'Cadastro cliente';
-        this.changeDetection.detectChanges();
     }
 
     get EnderecoForms(){
@@ -115,8 +111,7 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         const idpessoa = this.activatedRoute.snapshot.paramMap.get('idpessoa');
 
         if(idpessoa){
-            this.title = 'Editar cliente';
-            this.changeDetection.detectChanges();
+            
             const dadosCliente = await this.clientesService.getByIdpessoa(+idpessoa);
 
             if(dadosCliente){
