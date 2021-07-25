@@ -1,9 +1,11 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup,FormArray ,Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ContatoComponent } from "src/app/core/shared/components/contato/contato.component";
+import { TipoPessoa } from "src/app/core/shared/models/clientes.model";
 import { ClientesService } from "src/app/core/shared/services/clientes.service";
 import { AlertService } from "src/app/core/utils/alerts/alert.service";
+import {  MatRadioChange  } from '@angular/material/radio'
 
 @Component({
     selector: 'app-clientes-form',
@@ -14,6 +16,20 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
     
     formGroup!: FormGroup;
     formControls!: FormControl;
+    
+    
+    tipoPessoa!: number;
+    
+    tiposPessoas: TipoPessoa[] = [
+        {
+            tipo: 1,
+            descricao: 'Pessoa Jurídica'
+        },
+        {
+            tipo: 2,
+            descricao: 'Pessoa Física'
+        }
+    ];
 
     constructor(private clientesService: ClientesService, 
         private activatedRoute: ActivatedRoute, 
@@ -99,6 +115,8 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         this.formGroup = this.formBuilder.group({
             pessoa
         });
+
+        this.tipoPessoa = 1;
     }
 
     get EnderecoForms(){
@@ -122,6 +140,11 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
                 const dadosEndereco = this.formGroup.get('pessoa')?.get('enderecos') as FormArray;
                 dadosContato.patchValue(dadosCliente.pessoa.pessoaContato);
                 dadosEndereco.patchValue(dadosCliente.pessoa.pessoaEndereco);
+                
+                if(dadosCliente.pessoa.pessoaFisica)
+                    this.tipoPessoa = 2;
+                else
+                    this.tipoPessoa = 1;
             }
         }
     }
@@ -133,5 +156,10 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
     onSubmit(){
         console.log(this.formGroup.value);
         this.alertService.Success('teste');
+    }
+
+    radioChange(event: MatRadioChange){
+        console.log(event);
+        this.tipoPessoa = event.value
     }
 }

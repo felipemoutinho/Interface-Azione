@@ -89,3 +89,8 @@ interface PessoaJuridica {
     dataInclusao: Date;
     dataAlteracao: Date;
 }
+
+export interface TipoPessoa{
+    tipo: number;
+    descricao: string;
+}

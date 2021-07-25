@@ -9,13 +9,10 @@
           Dados Cliente
         </ng-template>
 
-
-        <mat-radio-group aria-label="Selecione o tipo pessoa">
+        <mat-radio-group (change)="radioChange($event)" [value]="tipoPessoa">
           <mat-label>Tipo Pessoa</mat-label>
-          <mat-radio-button value="1">Pessoa Física</mat-radio-button>
-          <mat-radio-button value="2">Pessoa Jurídica</mat-radio-button>
+          <mat-radio-button *ngFor="let tp of tiposPessoas" [value]="tp.tipo">{{tp.descricao}}</mat-radio-button>
         </mat-radio-group>
-
 
         <div formGroupName="pessoa">
 
@@ -35,7 +32,7 @@
             </mat-error>
           </mat-form-field>
 
-          <div formGroupName="pessoaFisica">
+          <div formGroupName="pessoaFisica" *ngIf="tipoPessoa === 2">
 
             <mat-form-field class="col-md-1">
               <mat-label>CPF</mat-label>
@@ -75,10 +72,10 @@
             <mat-form-field class="col-md-2">
               <mat-label>Estado Civil</mat-label>
               <mat-select matInput formControlName="estadocivil">
-                <mat-option value="1">Solteiro(a)</mat-option>
-                <mat-option value="2">Casado(a)</mat-option>
-                <mat-option value="3">Divorciado(a)</mat-option>
-                <mat-option value="4">Viúvo(a)</mat-option>
+                <mat-option [value]=1>Solteiro(a)</mat-option>
+                <mat-option [value]=2>Casado(a)</mat-option>
+                <mat-option [value]=3>Divorciado(a)</mat-option>
+                <mat-option [value]=4>Viúvo(a)</mat-option>
               </mat-select>
               <mat-error>
                 Por favor, informe o estado civil
@@ -99,6 +96,108 @@
               <mat-error>
                 Por favor, informe o nome da mãe
               </mat-error>
+            </mat-form-field>
+
+          </div>
+
+          <div formGroupName="pessoaJuridica" *ngIf="tipoPessoa === 1">
+
+            <mat-form-field class="col-md-2">
+              <mat-label>CNPJ</mat-label>
+              <input type="text" matInput formControlName="cnpj">
+              <mat-error>
+                Por favor, informe o número de CNPJ ou CPF
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-4">
+              <mat-label>Razão Social</mat-label>
+              <input type="text" matInput formControlName="razaoSocial">
+              <mat-error>
+                Por favor, informe a razão social
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-4">
+              <mat-label>Nome Fantasia</mat-label>
+              <input type="text" matInput formControlName="nomeFantasia">
+              <mat-error>
+                Por favor, informe o nome fantasia
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-2">
+              <mat-label>Inscrição Municipal</mat-label>
+              <input type="text" matInput formControlName="inscricaoMunicipal">
+              <mat-error>
+                Por favor, informe a inscrição municipal
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-4">
+              <mat-label>CNAE</mat-label>
+              <input type="text" matInput formControlName="idcnae">
+              <mat-error>
+                Por favor, informe o CNAE
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-4">
+              <mat-label>SUFRAMA</mat-label>
+              <input type="text" matInput formControlName="suframa">
+              <mat-error>
+                Por favor, informe o SUFRAMA
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-2">
+              <mat-label>Tipo Inscrição Estadual</mat-label>
+              <mat-select matInput formControlName="idindicadorInscEstadual">
+                <mat-option [value]= 1>Não Contribuinte</mat-option>
+                <mat-option [value]= 2>Contribuinte Isento de IE</mat-option>
+                <mat-option [value]= 3>Contribuinte ICMS</mat-option>
+              </mat-select>
+              <mat-error>
+                Por favor, informe o tipo de inscrição estadual
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-3">
+              <mat-label>Inscrição Estadual</mat-label>
+              <input type="text" matInput formControlName="inscricaoEstadual">
+              <mat-error>
+                Por favor, informe a inscrição estadual
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-3">
+              <mat-label>Tipo Tributação</mat-label>
+              <mat-select matInput formControlName="idtributacao">
+                <mat-option [value]=1>Simples Nacional</mat-option>
+                <mat-option [value]=2>Simples Nacional com Excesso Receita</mat-option>
+                <mat-option [value]=3>Lucro Real</mat-option>
+                <mat-option [value]=4>Lucro Presumido</mat-option>
+                <mat-option [value]=5>MEI - Micro Empreendedor Individual</mat-option>
+              </mat-select>
+              <mat-error>
+                Por favor, informe o tipo de tributação
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-3">
+              <mat-label>Data Fundação</mat-label>
+              <input type="datetime" matInput formControlName="dataFundacao">
+              <mat-error>
+                Por favor, informe a data de fundação
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-2">
+              <mat-label>Pessoa Jurídica Bloqueada</mat-label>
+              <mat-select matInput formControlName="bloqueada">
+                <mat-option [value]="true">Sim</mat-option>
+                <mat-option [value]="false">Não</mat-option>
+              </mat-select>
             </mat-form-field>
 
           </div>
@@ -182,8 +281,8 @@
               <mat-form-field>
                 <mat-label>Endereço Principal</mat-label>
                 <mat-select matInput formControlName="indprincipal">
-                  <mat-option value="1">Sim</mat-option>
-                  <mat-option value="0">Não</mat-option>
+                  <mat-option [value]="true">Sim</mat-option>
+                  <mat-option [value]="false">Não</mat-option>
                 </mat-select>
                 <mat-error>
                   Por favor, informe se o endereço é o principal
@@ -205,19 +304,19 @@
           <div formArrayName="contatos">
             <div *ngFor="let cont of ContatoForms.controls; let i=index" [formGroupName]="i">
 
-              <mat-form-field>
+              <mat-form-field class="col-md-2">
                 <mat-label>Tipo Contato</mat-label>
                 <mat-select matInput formControlName="idtipocontato">
-                  <mat-option value="1">Telefone Residencial</mat-option>
-                  <mat-option value="2">Telefone Comercial</mat-option>
-                  <mat-option value="3">E-mail</mat-option>
-                  <mat-option value="4">fax</mat-option>
-                  <mat-option value="5">Telefone Celular</mat-option>
-                  <mat-option value="6">Telefone de cobrança</mat-option>
-                  <mat-option value="7">Telefone de referência</mat-option>
-                  <mat-option value="8">Visita Técnica</mat-option>
-                  <mat-option value="9">Acesso Remoto</mat-option>
-                  <mat-option value="10">Site</mat-option>
+                  <mat-option [value]=1>Telefone Residencial</mat-option>
+                  <mat-option [value]=2>Telefone Comercial</mat-option>
+                  <mat-option [value]=3>E-mail</mat-option>
+                  <mat-option [value]=4>fax</mat-option>
+                  <mat-option [value]=5>Telefone Celular</mat-option>
+                  <mat-option [value]=6>Telefone de cobrança</mat-option>
+                  <mat-option [value]=7>Telefone de referência</mat-option>
+                  <mat-option [value]=8>Visita Técnica</mat-option>
+                  <mat-option [value]=9>Acesso Remoto</mat-option>
+                  <mat-option [value]=10>Site</mat-option>
                 </mat-select>
                 <mat-error>
                   Por favor, informe o tipo de contato
@@ -235,8 +334,8 @@
               <mat-form-field>
                 <mat-label>Contato Principal</mat-label>
                 <mat-select matInput formControlName="indcontatoprincipal">
-                  <mat-option value="1">Sim</mat-option>
-                  <mat-option value="0">Não</mat-option>
+                  <mat-option [value]="true">Sim</mat-option>
+                  <mat-option [value]="false">Não</mat-option>
                 </mat-select>
                 <mat-error>
                   Por favor, informe se é o contato principal
