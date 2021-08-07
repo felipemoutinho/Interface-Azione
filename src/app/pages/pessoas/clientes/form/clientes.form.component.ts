@@ -2,10 +2,11 @@ import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild }
 import { FormBuilder, FormControl, FormGroup,FormArray ,Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ContatoComponent } from "src/app/core/shared/components/contato/contato.component";
-import { TipoPessoa } from "src/app/core/shared/models/clientes.model";
+import { TipoPessoa } from "src/app/core/shared/models/pessoa.model";
 import { ClientesService } from "src/app/core/shared/services/clientes.service";
 import { AlertService } from "src/app/core/utils/alerts/alert.service";
 import {  MatRadioChange  } from '@angular/material/radio'
+import { DadosCliente } from "src/app/core/shared/models/clientes.model";
 
 @Component({
     selector: 'app-clientes-form',
@@ -95,11 +96,7 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
             bloqueada: this.formBuilder.control(''),
         });
         
-        const dadosCliente = this.formBuilder.group({
-            iddadoscliente : this.formBuilder.control(''),
-            idpessoa : this.formBuilder.control(''),
-            observacao: this.formBuilder.control('')
-        });
+        
         
         const pessoa = this.formBuilder.group({
             idpessoa: this.formBuilder.control(''),
@@ -108,11 +105,13 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
             contatos: this.formBuilder.array([contatos]),
             enderecos: this.formBuilder.array([enderecos]),
             pessoaFisica,
-            pessoaJuridica,
-            dadosCliente
+            pessoaJuridica
         });
 
         this.formGroup = this.formBuilder.group({
+            iddadoscliente : this.formBuilder.control(''),
+            idpessoa : this.formBuilder.control(''),
+            observacao: this.formBuilder.control(''),
             pessoa
         });
 
@@ -153,9 +152,14 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         this.router.navigate(['clientes']);
     }
 
-    onSubmit(){
-        console.log(this.formGroup.value);
-        this.alertService.Success('teste');
+    async onSubmit(){
+        try{
+            await this.clientesService.salvarCliente(this.formGroup.value);
+            this.alertService.Success('Cliente salvo com sucesso!');
+        }
+        catch(error){
+            console.log(error);
+        }
     }
 
     radioChange(event: MatRadioChange){

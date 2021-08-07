@@ -16,7 +16,7 @@
 
         <div formGroupName="pessoa">
 
-          <mat-form-field class="col-md-1">
+          <mat-form-field class="col-md-2">
             <mat-label>Código Pessoa</mat-label>
             <input type="text" matInput formControlName="codigopessoa">
             <mat-error>
@@ -34,7 +34,7 @@
 
           <div formGroupName="pessoaFisica" *ngIf="tipoPessoa === 2">
 
-            <mat-form-field class="col-md-1">
+            <mat-form-field class="col-md-2">
               <mat-label>CPF</mat-label>
               <input type="text" matInput formControlName="cpf">
               <mat-error>
@@ -42,7 +42,7 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field class="col-md-1">
+            <mat-form-field class="col-md-2">
               <mat-label>Identidade</mat-label>
               <input type="text" matInput formControlName="identidade">
               <mat-error>
