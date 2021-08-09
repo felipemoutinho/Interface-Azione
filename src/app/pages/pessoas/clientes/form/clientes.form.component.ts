@@ -7,6 +7,8 @@ import { ClientesService } from "src/app/core/shared/services/clientes.service";
 import { AlertService } from "src/app/core/utils/alerts/alert.service";
 import {  MatRadioChange  } from '@angular/material/radio'
 import { DadosCliente } from "src/app/core/shared/models/clientes.model";
+import { Estado } from "src/app/core/shared/models/estado.model";
+import { ListaEstados } from "src/app/core/utils/services/utils.service";
 
 @Component({
     selector: 'app-clientes-form',
@@ -17,7 +19,7 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
     
     formGroup!: FormGroup;
     formControls!: FormControl;
-    
+    listaEstados?: Estado[];
     
     tipoPessoa!: number;
     
@@ -116,6 +118,7 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         });
 
         this.tipoPessoa = 1;
+        this.listaEstados = ListaEstados;
     }
 
     get EnderecoForms(){

@@ -214,6 +214,14 @@
           <div formArrayName="enderecos">
             <div *ngFor="let end of EnderecoForms.controls; let i=index" [formGroupName]="i">
 
+              <mat-form-field>
+                <mat-label>Cep</mat-label>
+                <input type="text" matInput formControlName="cep">
+                <mat-error>
+                  Por favor, informe o CEP
+                </mat-error>
+              </mat-form-field>
+              
               <mat-form-field class="col-md-3">
                 <mat-label>Logradouro</mat-label>
                 <input type="text" matInput formControlName="logradouro">
@@ -246,27 +254,22 @@
                 </mat-error>
               </mat-form-field>
 
-              <mat-form-field>
-                <mat-label>Cep</mat-label>
-                <input type="text" matInput formControlName="cep">
+              <mat-form-field class="col-md-3">
+                <mat-label>Estado</mat-label>
+                <mat-select matInput formControlName="idestado">
+                  <mat-option *ngFor="let estado of this.listaEstados" [value]="estado.idestado">{{estado.nome}}</mat-option>
+                </mat-select>
                 <mat-error>
-                  Por favor, informe o CEP
+                  Por favor, informe o estado
                 </mat-error>
               </mat-form-field>
+              
 
               <mat-form-field class="col-md-3">
                 <mat-label>Cidade</mat-label>
                 <input type="text" matInput formControlName="idcidade">
                 <mat-error>
                   Por favor, informe a cidade
-                </mat-error>
-              </mat-form-field>
-
-              <mat-form-field class="col-md-3">
-                <mat-label>Estado</mat-label>
-                <input type="text" matInput formControlName="idestado">
-                <mat-error>
-                  Por favor, informe o estado
                 </mat-error>
               </mat-form-field>
 
@@ -353,9 +356,9 @@
       <button mat-flat-button color="primary" type="submit" (click)="onSubmit()">Salvar</button>
     </div>
 
-    <!-- <br>
+    <br>
     <br>
     Value: {{formGroup.value | json}}
-    Valid: {{ formGroup.valid }} -->
+    Valid: {{ formGroup.valid }}
   </form>
 </div>

@@ -27,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select'
 import { MatRadioModule } from '@angular/material/radio'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { EstadoComponent } from './core/shared/components/estado/estado.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     LoginComponent,
     ContatoComponent,
     AlertComponent,
-    ClientesListComponent
+    ClientesListComponent,
+    EstadoComponent
   ],
   imports: [
     BrowserModule,
