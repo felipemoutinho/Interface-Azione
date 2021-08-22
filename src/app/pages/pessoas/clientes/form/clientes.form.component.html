@@ -216,7 +216,7 @@
 
               <mat-form-field>
                 <mat-label>Cep</mat-label>
-                <input type="text" matInput formControlName="cep">
+                <input type="text" matInput formControlName="cep" (blur)="findEndereco()">
                 <mat-error>
                   Por favor, informe o CEP
                 </mat-error>
@@ -353,7 +353,7 @@
 
     <div>
       <button mat-flat-button color="accent" (click)="voltar()">Voltar</button>
-      <button mat-flat-button color="primary" type="submit" (click)="onSubmit()">Salvar</button>
+      <button mat-flat-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!formGroup.valid">Salvar</button>
     </div>
 
     <br>

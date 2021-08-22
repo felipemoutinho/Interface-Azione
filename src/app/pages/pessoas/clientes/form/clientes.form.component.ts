@@ -9,6 +9,7 @@ import {  MatRadioChange  } from '@angular/material/radio'
 import { DadosCliente } from "src/app/core/shared/models/clientes.model";
 import { Estado } from "src/app/core/shared/models/estado.model";
 import { ListaEstados } from "src/app/core/utils/services/utils.service";
+import { CepService } from "src/app/core/utils/services/cep.service";
 
 @Component({
     selector: 'app-clientes-form',
@@ -39,7 +40,8 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         private router: Router,
         private changeDetection: ChangeDetectorRef,
         private formBuilder: FormBuilder,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private cepService: CepService
         ){
 
     }
@@ -61,7 +63,7 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
             bairro: this.formBuilder.control(''),
             numero: this.formBuilder.control(''),
             complemento: this.formBuilder.control(''),
-            cep: this.formBuilder.control(''),
+            cep: this.formBuilder.control('', [Validators.required]),
             idcidade: this.formBuilder.control(''),
             idestado: this.formBuilder.control(''),
             idpais: this.formBuilder.control(''),
@@ -74,10 +76,10 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
             cpf: this.formBuilder.control('', [Validators.required]),
             identidade: this.formBuilder.control(''),
             datanascimento: this.formBuilder.control(''),
-            sexo: this.formBuilder.control(''),
+            sexo: this.formBuilder.control('', [Validators.required]),
             estadocivil: this.formBuilder.control(''),
             nomepai: this.formBuilder.control(''),
-            nomemae: this.formBuilder.control(''),
+            nomemae: this.formBuilder.control('', [Validators.required]),
             idindicadorInscEstadual: this.formBuilder.control(''),
             inscricaoEstadual: this.formBuilder.control(''),
         });
@@ -85,7 +87,7 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         const pessoaJuridica = this.formBuilder.group({
             iddadospessoajuridica: this.formBuilder.control(''),
             idpessoa: this.formBuilder.control(''),
-            cnpj: this.formBuilder.control(''),
+            cnpj: this.formBuilder.control('', [Validators.required]),
             razaoSocial: this.formBuilder.control(''),
             nomeFantasia: this.formBuilder.control(''),
             inscricaoMunicipal: this.formBuilder.control(''),
@@ -168,5 +170,35 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
     radioChange(event: MatRadioChange){
         console.log(event);
         this.tipoPessoa = event.value
+    }
+
+    findEndereco(){
+        const cep = this.EnderecoForms.value[0].cep as string;
+        
+        if(cep.length == 8){
+            this.cepService.getEndereco(cep).subscribe((endereco) => {
+                if(endereco.erro === true){
+                    this.alertService.Warning('Endereço não encontrado.')
+                }
+                else{
+                    const dadosEndereco = this.EnderecoForms.controls;
+                    dadosEndereco[0].get('bairro')?.setValue(endereco.bairro);
+                    dadosEndereco[0].get('logradouro')?.setValue(endereco.logradouro);
+                    dadosEndereco[0].get('idcidade')?.setValue(endereco.localidade);
+                    dadosEndereco[0].get('idestado')?.setValue(this.findIdEstado(endereco.uf));
+                    console.log(dadosEndereco);
+                }
+            })
+        }
+    }
+
+    findIdEstado(uf: string): number{
+        if(uf){
+            const idestado = this.listaEstados?.find(x => x.uf == uf)?.idestado as number;
+            return idestado
+        }
+        else{
+            return 0;
+        }
     }
 }
