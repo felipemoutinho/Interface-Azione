@@ -25,7 +25,7 @@ export class ClientesService {
         console.log(this.formataBody(cliente));
         const bodyFormatado = this.formataBody(cliente);
         if(cliente.iddadoscliente){
-            return this.http.put(`${env.api}/clientes/${cliente.dadosCliente.iddadoscliente}`, bodyFormatado).toPromise();
+            return this.http.put(`${env.api}/clientes/${cliente.iddadoscliente}`, bodyFormatado).toPromise();
         }
         else{
             if(cliente.pessoa.pessoaFisica.cpf){

@@ -13,7 +13,7 @@ export class AlertService {
     Error(message: string){
         
         const config = new  MatSnackBarConfig();
-        config.duration = 2000;
+        config.duration = 5000;
         config.verticalPosition = 'top';
         config.horizontalPosition = 'end';
         config.panelClass = ['error-snackbar'];

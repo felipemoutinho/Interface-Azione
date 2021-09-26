@@ -10,6 +10,8 @@ import { DadosCliente } from "src/app/core/shared/models/clientes.model";
 import { Estado } from "src/app/core/shared/models/estado.model";
 import { ListaEstados } from "src/app/core/utils/services/utils.service";
 import { CepService } from "src/app/core/utils/services/cep.service";
+import { PessoaTipo } from "src/app/core/enum/utils.enum";
+import * as moment from "moment";
 
 @Component({
     selector: 'app-clientes-form',
@@ -145,10 +147,15 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
                 dadosContato.patchValue(dadosCliente.pessoa.pessoaContato);
                 dadosEndereco.patchValue(dadosCliente.pessoa.pessoaEndereco);
                 
-                if(dadosCliente.pessoa.pessoaFisica)
-                    this.tipoPessoa = 2;
-                else
-                    this.tipoPessoa = 1;
+                if(dadosCliente.pessoa.pessoaFisica){
+                    this.tipoPessoa = PessoaTipo.Fisica;
+                    this.removeValidatorsPessoa(PessoaTipo.Juridica);
+                }
+                    
+                else{
+                    this.tipoPessoa = PessoaTipo.Juridica;
+                    this.removeValidatorsPessoa(PessoaTipo.Fisica)
+                }  
             }
         }
     }
@@ -164,12 +171,16 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         }
         catch(error){
             console.log(error);
+            this.alertService.Error(`Erro ao salvar cliente: ${error}`);
         }
     }
 
     radioChange(event: MatRadioChange){
-        console.log(event);
         this.tipoPessoa = event.value
+        if(this.tipoPessoa === PessoaTipo.Fisica)
+            this.removeValidatorsPessoa(PessoaTipo.Juridica);
+        else
+            this.removeValidatorsPessoa(PessoaTipo.Fisica);
     }
 
     findEndereco(){
@@ -199,6 +210,29 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         }
         else{
             return 0;
+        }
+    }
+
+    removeValidatorsPessoa(pessoaTipo: PessoaTipo){
+        if(pessoaTipo == PessoaTipo.Juridica){
+            const dadosPessoaJuridica = this.formGroup.get('pessoa')?.get('pessoaJuridica') as FormGroup;
+            
+            if(dadosPessoaJuridica){
+                for(const key in dadosPessoaJuridica.controls){
+                    dadosPessoaJuridica.get(key)?.clearValidators();
+                    dadosPessoaJuridica.get(key)?.updateValueAndValidity();
+                }
+            }
+        }
+        else{
+            const dadosPessoaFisica = this.formGroup.get('pessoa')?.get('pessoaFisica') as FormGroup;
+            
+            if(dadosPessoaFisica){
+                for(const key in dadosPessoaFisica.controls){
+                    dadosPessoaFisica.get(key)?.clearValidators();
+                    dadosPessoaFisica.get(key)?.updateValueAndValidity();
+                }
+            }
         }
     }
 }
