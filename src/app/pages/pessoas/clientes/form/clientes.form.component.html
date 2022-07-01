@@ -10,7 +10,7 @@
         </ng-template>
 
         <mat-radio-group (change)="radioChange($event)" [value]="tipoPessoa">
-          <mat-label>Tipo Pessoa</mat-label>
+          <mat-label>Tipo Pessoa: </mat-label>
           <mat-radio-button *ngFor="let tp of tiposPessoas" [value]="tp.tipo">{{tp.descricao}}</mat-radio-button>
         </mat-radio-group>
 
