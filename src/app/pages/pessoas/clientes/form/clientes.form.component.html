@@ -16,181 +16,129 @@
 
         <div formGroupName="pessoa">
 
-          <mat-form-field class="col-md-2">
-            <mat-label>Código Pessoa</mat-label>
-            <input type="text" matInput formControlName="codigopessoa">
-            <mat-error>
-              Por favor, informe um código!
-            </mat-error>
-          </mat-form-field>
+          <app-input-text
+            titulo="Código Pessoa" 
+            controlName="codigopessoa" 
+            [formGroup]="FormGroupPessoa">
+          </app-input-text>
 
-          <mat-form-field class="col-md-4">
-            <mat-label>Nome</mat-label>
-            <input type="text" matInput formControlName="nome">
-            <mat-error>
-              Por favor, informe o nome do cliente!
-            </mat-error>
-          </mat-form-field>
+          <app-input-text
+            titulo="Nome" 
+            controlName="nome" 
+            [formGroup]="FormGroupPessoa">
+          </app-input-text>
 
           <div formGroupName="pessoaFisica" *ngIf="tipoPessoa === 2">
+            
+            <app-input-text
+              titulo="CPF" 
+              controlName="cpf" 
+              [formGroup]="FormGroupPessoaFisica">
+            </app-input-text>
 
-            <mat-form-field class="col-md-2">
-              <mat-label>CPF</mat-label>
-              <input type="text" matInput formControlName="cpf">
-              <mat-error>
-                Por favor, informe o número de CPF
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="Identidade" 
+              controlName="identidade" 
+              [formGroup]="FormGroupPessoaFisica">
+            </app-input-text>
 
-            <mat-form-field class="col-md-2">
-              <mat-label>Identidade</mat-label>
-              <input type="text" matInput formControlName="identidade">
-              <mat-error>
-                Por favor, informe o número de Identidade
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="Data Nascimento" 
+              controlName="datanascimento" 
+              [formGroup]="FormGroupPessoaFisica">
+            </app-input-text>
 
-            <mat-form-field class="col-md-2">
-              <mat-label>Data Nascimento</mat-label>
-              <input type="text" matInput formControlName="datanascimento">
-              <mat-error>
-                Por favor, informe a data de nascimento
-              </mat-error>
-            </mat-form-field>
+            <app-input-select 
+              titulo="Sexo" 
+              controlName="sexo" 
+              [formGroup]="FormGroupPessoaFisica"
+              [optionList]="listaSexo">
+            </app-input-select>
 
-            <mat-form-field class="col-md-2">
-              <mat-label>Sexo</mat-label>
-              <mat-select matInput formControlName="sexo">
-                <mat-option value="M">Masculino</mat-option>
-                <mat-option value="F">Feminino</mat-option>
-              </mat-select>
-              <mat-error>
-                Por favor, informe o Sexo
-              </mat-error>
-            </mat-form-field>
+            <app-input-select 
+              titulo="Estado Civil" 
+              controlName="estadocivil" 
+              [formGroup]="FormGroupPessoaFisica"
+              [optionList]="listaEstadoCivil">
+            </app-input-select>
 
-            <mat-form-field class="col-md-2">
-              <mat-label>Estado Civil</mat-label>
-              <mat-select matInput formControlName="estadocivil">
-                <mat-option [value]=1>Solteiro(a)</mat-option>
-                <mat-option [value]=2>Casado(a)</mat-option>
-                <mat-option [value]=3>Divorciado(a)</mat-option>
-                <mat-option [value]=4>Viúvo(a)</mat-option>
-              </mat-select>
-              <mat-error>
-                Por favor, informe o estado civil
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="Nome Pai" 
+              controlName="nomepai" 
+              [formGroup]="FormGroupPessoaFisica">
+            </app-input-text>
 
-            <mat-form-field class="col-4">
-              <mat-label>Nome Pai</mat-label>
-              <input type="text" matInput formControlName="nomepai">
-              <mat-error>
-                Por favor, informe o nome do pai
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="col-4">
-              <mat-label>Nome Mãe</mat-label>
-              <input type="text" matInput formControlName="nomemae">
-              <mat-error>
-                Por favor, informe o nome da mãe
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="Nome Mãe" 
+              controlName="nomemae" 
+              [formGroup]="FormGroupPessoaFisica">
+            </app-input-text>
 
           </div>
 
           <div formGroupName="pessoaJuridica" *ngIf="tipoPessoa === 1">
 
-            <mat-form-field class="col-md-2">
-              <mat-label>CNPJ</mat-label>
-              <input type="text" matInput formControlName="cnpj">
-              <mat-error>
-                Por favor, informe o número de CNPJ ou CPF
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="CNPJ" 
+              controlName="cnpj" 
+              [formGroup]="FormGroupPessoaJuridica">
+            </app-input-text>
 
-            <mat-form-field class="col-4">
-              <mat-label>Razão Social</mat-label>
-              <input type="text" matInput formControlName="razaoSocial">
-              <mat-error>
-                Por favor, informe a razão social
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="Razão Social" 
+              controlName="razaoSocial" 
+              [formGroup]="FormGroupPessoaJuridica">
+            </app-input-text>
 
-            <mat-form-field class="col-4">
-              <mat-label>Nome Fantasia</mat-label>
-              <input type="text" matInput formControlName="nomeFantasia">
-              <mat-error>
-                Por favor, informe o nome fantasia
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="Nome Fantasia" 
+              controlName="nomeFantasia" 
+              [formGroup]="FormGroupPessoaJuridica">
+            </app-input-text>
 
-            <mat-form-field class="col-2">
-              <mat-label>Inscrição Municipal</mat-label>
-              <input type="text" matInput formControlName="inscricaoMunicipal">
-              <mat-error>
-                Por favor, informe a inscrição municipal
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="Inscrição Municipal" 
+              controlName="inscricaoMunicipal" 
+              [formGroup]="FormGroupPessoaJuridica">
+            </app-input-text>
 
-            <mat-form-field class="col-4">
-              <mat-label>CNAE</mat-label>
-              <input type="text" matInput formControlName="idcnae">
-              <mat-error>
-                Por favor, informe o CNAE
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="CNAE" 
+              controlName="idcnae" 
+              [formGroup]="FormGroupPessoaJuridica">
+            </app-input-text>
 
-            <mat-form-field class="col-4">
-              <mat-label>SUFRAMA</mat-label>
-              <input type="text" matInput formControlName="suframa">
-              <mat-error>
-                Por favor, informe o SUFRAMA
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="SUFRAMA" 
+              controlName="suframa" 
+              [formGroup]="FormGroupPessoaJuridica">
+            </app-input-text>
 
-            <mat-form-field class="col-md-2">
-              <mat-label>Tipo Inscrição Estadual</mat-label>
-              <mat-select matInput formControlName="idindicadorInscEstadual">
-                <mat-option [value]= 1>Não Contribuinte</mat-option>
-                <mat-option [value]= 2>Contribuinte Isento de IE</mat-option>
-                <mat-option [value]= 3>Contribuinte ICMS</mat-option>
-              </mat-select>
-              <mat-error>
-                Por favor, informe o tipo de inscrição estadual
-              </mat-error>
-            </mat-form-field>
+            <app-input-select 
+              titulo="Tipo Inscrição Estadual" 
+              controlName="idindicadorInscEstadual" 
+              [formGroup]="FormGroupPessoaJuridica"
+              [optionList]="listaTipoInscricaoEstadual">
+            </app-input-select>
 
-            <mat-form-field class="col-3">
-              <mat-label>Inscrição Estadual</mat-label>
-              <input type="text" matInput formControlName="inscricaoEstadual">
-              <mat-error>
-                Por favor, informe a inscrição estadual
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="Inscrição Estadual" 
+              controlName="inscricaoEstadual" 
+              [formGroup]="FormGroupPessoaJuridica">
+            </app-input-text>
 
-            <mat-form-field class="col-md-3">
-              <mat-label>Tipo Tributação</mat-label>
-              <mat-select matInput formControlName="idtributacao">
-                <mat-option [value]=1>Simples Nacional</mat-option>
-                <mat-option [value]=2>Simples Nacional com Excesso Receita</mat-option>
-                <mat-option [value]=3>Lucro Real</mat-option>
-                <mat-option [value]=4>Lucro Presumido</mat-option>
-                <mat-option [value]=5>MEI - Micro Empreendedor Individual</mat-option>
-              </mat-select>
-              <mat-error>
-                Por favor, informe o tipo de tributação
-              </mat-error>
-            </mat-form-field>
+            <app-input-select 
+              titulo="Tipo Tributação" 
+              controlName="idtributacao" 
+              [formGroup]="FormGroupPessoaJuridica"
+              [optionList]="listaTipoTributacao">
+            </app-input-select>
 
-            <mat-form-field class="col-md-3">
-              <mat-label>Data Fundação</mat-label>
-              <input type="datetime" matInput formControlName="dataFundacao">
-              <mat-error>
-                Por favor, informe a data de fundação
-              </mat-error>
-            </mat-form-field>
+            <app-input-text
+              titulo="Data Fundação" 
+              controlName="dataFundacao" 
+              [formGroup]="FormGroupPessoaJuridica">
+            </app-input-text>
 
             <mat-form-field class="col-md-2">
               <mat-label>Pessoa Jurídica Bloqueada</mat-label>
@@ -214,45 +162,43 @@
           <div formArrayName="enderecos">
             <div *ngFor="let end of EnderecoForms.controls; let i=index" [formGroupName]="i">
 
-              <mat-form-field>
+              <!-- <mat-form-field>
                 <mat-label>Cep</mat-label>
                 <input type="text" matInput formControlName="cep" (blur)="findEndereco()">
                 <mat-error>
                   Por favor, informe o CEP
                 </mat-error>
-              </mat-form-field>
-              
-              <mat-form-field class="col-md-3">
-                <mat-label>Logradouro</mat-label>
-                <input type="text" matInput formControlName="logradouro">
-                <mat-error>
-                  Por favor, informe o logradouro
-                </mat-error>
-              </mat-form-field>
+              </mat-form-field> -->
 
-              <mat-form-field class="col-md-3">
-                <mat-label>Bairro</mat-label>
-                <input type="text" matInput formControlName="bairro">
-                <mat-error>
-                  Por favor, informe o bairro
-                </mat-error>
-              </mat-form-field>
+              <app-input-text
+                titulo="Cep" 
+                controlName="cep" 
+                [formGroup]="FormGroupEndereco">
+              </app-input-text>
 
-              <mat-form-field>
-                <mat-label>Número</mat-label>
-                <input type="text" matInput formControlName="numero">
-                <mat-error>
-                  Por favor, informe o número
-                </mat-error>
-              </mat-form-field>
+              <app-input-text
+                titulo="Logradouro" 
+                controlName="logradouro" 
+                [formGroup]="FormGroupEndereco">
+              </app-input-text>
 
-              <mat-form-field class="col-md-3">
-                <mat-label>Complemento</mat-label>
-                <input type="text" matInput formControlName="complemento">
-                <mat-error>
-                  Por favor, informe o complemento
-                </mat-error>
-              </mat-form-field>
+              <app-input-text
+                titulo="Bairro" 
+                controlName="bairro" 
+                [formGroup]="FormGroupEndereco">
+              </app-input-text>
+
+              <app-input-text
+                titulo="Número" 
+                controlName="numero" 
+                [formGroup]="FormGroupEndereco">
+              </app-input-text>
+
+              <app-input-text
+                titulo="Complemento" 
+                controlName="complemento" 
+                [formGroup]="FormGroupEndereco">
+              </app-input-text>
 
               <mat-form-field class="col-md-3">
                 <mat-label>Estado</mat-label>
@@ -263,23 +209,25 @@
                   Por favor, informe o estado
                 </mat-error>
               </mat-form-field>
-              
 
-              <mat-form-field class="col-md-3">
-                <mat-label>Cidade</mat-label>
-                <input type="text" matInput formControlName="idcidade">
-                <mat-error>
-                  Por favor, informe a cidade
-                </mat-error>
-              </mat-form-field>
+              <!-- <app-input-select 
+                titulo="Estado" 
+                controlName="idestado" 
+                [formGroup]="FormGroupEndereco"
+                [optionList]="listaEstados">
+              </app-input-select> -->
 
-              <mat-form-field class="col-md-3">
-                <mat-label>País</mat-label>
-                <input type="text" matInput formControlName="idpais">
-                <mat-error>
-                  Por favor, informe o País
-                </mat-error>
-              </mat-form-field>
+              <app-input-text
+                titulo="Cidade" 
+                controlName="idcidade" 
+                [formGroup]="FormGroupEndereco">
+              </app-input-text>
+
+              <app-input-text
+                titulo="País" 
+                controlName="idpais" 
+                [formGroup]="FormGroupEndereco">
+              </app-input-text>
 
               <mat-form-field>
                 <mat-label>Endereço Principal</mat-label>
@@ -307,32 +255,18 @@
           <div formArrayName="contatos">
             <div *ngFor="let cont of ContatoForms.controls; let i=index" [formGroupName]="i">
 
-              <mat-form-field class="col-md-2">
-                <mat-label>Tipo Contato</mat-label>
-                <mat-select matInput formControlName="idtipocontato">
-                  <mat-option [value]=1>Telefone Residencial</mat-option>
-                  <mat-option [value]=2>Telefone Comercial</mat-option>
-                  <mat-option [value]=3>E-mail</mat-option>
-                  <mat-option [value]=4>fax</mat-option>
-                  <mat-option [value]=5>Telefone Celular</mat-option>
-                  <mat-option [value]=6>Telefone de cobrança</mat-option>
-                  <mat-option [value]=7>Telefone de referência</mat-option>
-                  <mat-option [value]=8>Visita Técnica</mat-option>
-                  <mat-option [value]=9>Acesso Remoto</mat-option>
-                  <mat-option [value]=10>Site</mat-option>
-                </mat-select>
-                <mat-error>
-                  Por favor, informe o tipo de contato
-                </mat-error>
-              </mat-form-field>
+              <app-input-select 
+                titulo="Tipo Contato" 
+                controlName="idtipocontato" 
+                [formGroup]="FormGroupContato"
+                [optionList]="listaTipoContato">
+              </app-input-select>
 
-              <mat-form-field class="col-md-3">
-                <mat-label>Descrição Contato</mat-label>
-                <input type="text" matInput formControlName="descricaocontato">
-                <mat-error>
-                  Por favor, informe o contato
-                </mat-error>
-              </mat-form-field>
+              <app-input-text
+                titulo="Descrição Contato" 
+                controlName="descricaocontato" 
+                [formGroup]="FormGroupContato">
+              </app-input-text>
 
               <mat-form-field>
                 <mat-label>Contato Principal</mat-label>

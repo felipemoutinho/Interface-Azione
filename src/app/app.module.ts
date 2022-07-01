@@ -12,22 +12,15 @@ import { AlertComponent } from './core/utils/alerts/alert.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ClientesFormComponent } from './pages/pessoas/clientes/form/clientes.form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ClientesListComponent } from './pages/pessoas/clientes/list/clientes-list.component';
 
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
-import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select'
-import { MatRadioModule } from '@angular/material/radio'
-import { MatSnackBarModule } from '@angular/material/snack-bar'
+
+
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+
 import { EstadoComponent } from './core/shared/components/estado/estado.component';
+import { ClientesModule } from './pages/pessoas/clientes/clientes.module';
+import { MaterialModule } from './core/shared/modules/material/material.module';
 
 
 @NgModule({
@@ -36,11 +29,9 @@ import { EstadoComponent } from './core/shared/components/estado/estado.componen
     AuthComponent,
     SideBarComponent,
     HomeComponent,
-    ClientesFormComponent,
     LoginComponent,
     ContatoComponent,
     AlertComponent,
-    ClientesListComponent,
     EstadoComponent
   ],
   imports: [
@@ -49,17 +40,8 @@ import { EstadoComponent } from './core/shared/components/estado/estado.componen
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatTabsModule,
-    MatIconModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatSnackBarModule
+    ClientesModule,
+    MaterialModule
   ],
   providers: [
     httpInterceptorProvider,

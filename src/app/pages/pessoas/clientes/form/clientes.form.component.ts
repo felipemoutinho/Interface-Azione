@@ -37,6 +37,45 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
         }
     ];
 
+    listaSexo = {
+        1: 'Masculino',
+        2: 'Feminino'
+    };
+
+    listaEstadoCivil = {
+        1: 'Solteiro(a)',
+        2: 'Casado(a)',
+        3: 'Divorciado(a)',
+        4: 'Viúvo(a)'
+    };
+
+    listaTipoInscricaoEstadual = {
+        1: 'Não Contribuinte',
+        2: 'Contribuinte Isento de IE',
+        3: 'Contribuinte ICMS',
+    };
+
+    listaTipoTributacao = {
+        1: 'Simples Nacional',
+        2: 'Simples Nacional com Excesso Receita',
+        3: 'Lucro Real',
+        4: 'Lucro Presumido',
+        5: 'MEI - Micro Empreendedor Individual'
+    };
+
+    listaTipoContato = {
+        1: 'Telefone Residencial',
+        2: 'Telefone Comercial',
+        3: 'E-mail',
+        4: 'Fax',
+        5: 'Telefone Celular',
+        6: 'Telefone de Cobrança',
+        7: 'Telefone de Referência',
+        8: 'Visita Técnica',
+        9: 'Acesso Remoto',
+        10: 'Site'
+    };
+
     constructor(private clientesService: ClientesService, 
         private activatedRoute: ActivatedRoute, 
         private router: Router,
@@ -131,6 +170,26 @@ export class ClientesFormComponent implements AfterViewInit, OnInit{
 
     get ContatoForms(){
         return this.formGroup.get('pessoa')?.get('contatos') as FormArray;
+    }
+
+    get FormGroupPessoa(){
+        return this.formGroup.get('pessoa') as FormGroup;
+    }
+
+    get FormGroupPessoaFisica(){
+        return this.formGroup.get('pessoa')?.get('pessoaFisica') as FormGroup;
+    }
+
+    get FormGroupPessoaJuridica(){
+        return this.formGroup.get('pessoa')?.get('pessoaJuridica') as FormGroup;
+    }
+
+    get FormGroupEndereco(){
+        return this.EnderecoForms.at(0) as FormGroup;
+    }
+
+    get FormGroupContato(){
+        return this.ContatoForms.at(0) as FormGroup;
     }
 
     async ngAfterViewInit() {
